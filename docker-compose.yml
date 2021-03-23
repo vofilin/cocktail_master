@@ -1,6 +1,6 @@
 services:
   web:
-    image: "cocktail_master:stable"
+    image: "vofilin/cocktail_master:stable"
     command: gunicorn cocktail_master.wsgi:application --bind 0.0.0.0:8000 --access-logfile '-'
     ports:
       - "8000:8000"

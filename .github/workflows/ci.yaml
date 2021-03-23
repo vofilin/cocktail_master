@@ -18,7 +18,7 @@ jobs:
       - name: Build & Publish Image
         uses: docker/build-push-action@v1
         with:
-          tags: cocktail_master:stable,cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}
+          tags: stable,${{ env.COCKTAIL_MASTER_VERSION }}
 
   deploy-job: # deploy job
     runs-on: self-hosted
