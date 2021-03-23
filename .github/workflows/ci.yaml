@@ -19,6 +19,7 @@ jobs:
         uses: docker/build-push-action@v1
         with:
           tags: stable,${{ env.COCKTAIL_MASTER_VERSION }}
+          push: false
 
   deploy-job: # deploy job
     runs-on: self-hosted
