@@ -1,0 +1,22 @@
+{% extends 'cocktails/base.html' %}
+
+{% block page_header %}
+  <h3>{{ ingredient }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+  <div class="card mb-0">
+    <div class="card-body">
+      {{ description|linebreaks }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-1">
+      <h4><a href="{% url 'cocktails:edit_ingredient' ingredient.id %}">Edit</a></h4>
+    </div>
+    <div class="col-1">
+      <h4><a href="{% url 'cocktails:delete_ingredient' ingredient.id %}">Delete</a></h4>
+    </div>
+  </div>
+{% endblock content %}

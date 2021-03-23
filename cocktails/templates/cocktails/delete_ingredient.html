@@ -1,0 +1,32 @@
+{% extends "cocktails/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block page_header %}
+  <h3>Delete ingredient:</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+  {% if cocktails %}
+    <h4>Cannot delete ingredient:</h4>
+    <h5>
+      Deleting the ingredient {{ingredient}} would require deleting
+      the following cocktails:
+    </h5>
+    <ul>
+      {% for cocktail in cocktails %}
+        <li><h5>
+          <a href="{% url 'cocktails:cocktail' cocktail.id %}">{{ cocktail }}</a>
+        </h5></li>
+      {% endfor %}
+      </ul>
+  {% else %}
+    <h5>Are you want to delete the ingredient {{ingredient}}?</h5>
+    <form action="{% url 'cocktails:delete_ingredient' ingredient.id%}" method='post'>
+      {% csrf_token %}
+      <input type="submit" value="Yes, I'm sure">
+    </form>
+  {% endif %}
+
+{% endblock content %}

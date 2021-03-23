@@ -1,0 +1,43 @@
+{% extends "cocktails/base.html" %}
+
+{% block page_header %}
+  <h1>Ingredients</h1>
+{% endblock page_header %}
+
+{% block content %}
+
+  <form action="{% url 'cocktails:ingredients' %}" method="get">
+    <h3><input name="q" type="text" placeholder="Search..."></h3>
+  </form>
+
+  <h3><a href="{% url 'cocktails:new_ingredient' %}">Add new ingredient</a></h3>
+
+  <ul>
+    {% for ingredient in page_obj %}
+      <li><h3>
+        <a href="{% url 'cocktails:ingredient' ingredient.id %}">{{ ingredient }}</a>
+      </h3></li>
+    {% empty %}
+      <li><h3>No ingredients have been added yet.</h3></li>
+    {% endfor %}
+  </ul>
+
+  <div class="pagination">
+    <span class="step-links">
+      {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; first</a>
+        <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+      {% endif %}
+
+      <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+
+      {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">next</a>
+        <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
+  </div>
+
+{% endblock content %}

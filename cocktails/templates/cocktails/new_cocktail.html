@@ -1,0 +1,55 @@
+
+{% extends "cocktails/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block page_header %}
+  <h3>Add new cocktail:</h3>
+{% endblock page_header %}
+
+{% block content %}
+
+  <form id="form-container" action="{% url 'cocktails:new_cocktail' %}" method='post'>
+    {% csrf_token %}
+    {{ form.name|as_crispy_field }}
+    <div class="row">
+      <div class="col-4">
+        {{ form.description|as_crispy_field }}
+      </div>
+      <div class="col-4">
+        {{ form.steps|as_crispy_field }}
+      </div>
+    </div>
+    {{formset.management_form}}
+    {% for f_form in formset %}
+      <div class="ingredients-form">
+        {{ f_form }}
+      </div>
+    {% endfor %}
+    <button id="add-form" type="button">+</button>
+    <p><button name="submit">Add cocktail</button></p>
+  </form>
+
+  <script>
+    let ingredientsForm = document.querySelectorAll(".ingredients-form")
+    let container = document.querySelector("#form-container")
+    let addButton = document.querySelector("#add-form")
+    let totalForms = document.querySelector("#id_form-TOTAL_FORMS")
+
+    let formNum = ingredientsForm.length-1
+    addButton.addEventListener('click', addForm)
+
+    function addForm(e){
+      e.preventDefault()
+      let newForm = ingredientsForm[0].cloneNode(true)
+      let formRegex = RegExp(`form-(\\d){1}-`,'g')
+
+      formNum++
+      newForm.innerHTML = newForm.innerHTML.replace(formRegex, `form-${formNum}-`)
+      container.insertBefore(newForm, addButton)
+
+      totalForms.setAttribute('value', `${formNum+1}`)
+    }
+  </script>
+
+{% endblock content %}

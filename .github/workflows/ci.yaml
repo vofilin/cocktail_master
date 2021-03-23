@@ -1,0 +1,39 @@
+name: Django CI/CD Workflow
+
+# triggers for the workflow
+on:
+  push:
+    branches:
+      - master
+
+# job definitions
+jobs:
+  package-job: # package job for building and publishing docker image
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code # checking out code.
+        uses: actions/checkout@v2
+      - name: Define version
+        run: cat version.txt >> $GITHUB_ENV
+      - name: Build & Publish Image
+        uses: docker/build-push-action@v1
+        with:
+          tags: cocktail_master:stable,cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}
+
+  deploy-job: # deploy job
+    runs-on: self-hosted
+    needs: [package-job] # will require package-job to be successful for triggering
+    steps:
+      - name: Docker compose
+        run: docker-compose up -d
+        env:
+          DB_ENGINE: ${{ secrets.DB_ENGINE }}
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_NAME: ${{ secrets.DB_NAME }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DJANGO_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          PGADMIN_DEFAULT_EMAIL: ${{ secrets.PGADMIN_DEFAULT_EMAIL }}
+          PGADMIN_DEFAULT_PASSWORD: ${{ secrets.PGADMIN_DEFAULT_PASSWORD }}

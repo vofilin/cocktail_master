@@ -1,0 +1,42 @@
+services:
+  web:
+    image: "cocktail_master:stable"
+    command: gunicorn cocktail_master.wsgi:application --bind 0.0.0.0:8000 --access-logfile '-'
+    ports:
+      - "8000:8000"
+    networks:
+      - postgres
+    environment:
+      DB_ENGINE: ${DB_ENGINE}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
+    depends_on:
+      - postgres
+  postgres:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    networks:
+      - postgres
+    volumes:
+      - /var/lib/postgresql/data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  pgadmin:
+    image: "dpage/pgadmin4"
+    ports:
+      - "5050:80"
+    networks:
+      - postgres
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
+      PGADMIN_CONFIG_CONSOLE_LOG_LEVEL: 10
+
+networks:
+  postgres:
+    driver: bridge

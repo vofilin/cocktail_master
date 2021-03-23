@@ -1,0 +1,41 @@
+{% load bootstrap5 %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+    shrink-to-fit=no">
+  <title>"I drink"</title>
+  {% bootstrap_css %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-light bg-light mb-4 border">
+    <a class="navbar-brand" href="{% url 'cocktails:index' %}">
+      <h1 class="display-4">"I drink"</h1>
+    </a>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <h2><a class="nav-link" href="{% url 'cocktails:cocktails' %}">Cocktails</a></h2>
+        </li>
+      </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <h2><a class="nav-link" href="{% url 'cocktails:ingredients' %}">Ingredients</a></h2>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <main role="main" class="container">
+    <div class="pb-2 mb-2 border-bottom">
+      {% block page_header %}{% endblock page_header %}
+    </div>
+    <div>
+      {% block content %}{% endblock content %}
+    </div>
+  </main>
+</body>
