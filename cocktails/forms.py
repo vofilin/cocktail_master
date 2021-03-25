@@ -16,9 +16,15 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = ['ingredient','quantity']
 
+    # Change default order for ingredient field to sorting by ingredient name
+    def __init__(self, *args, **kwargs):
+        super(RecipeForm, self).__init__(*args, **kwargs)
+        self.fields['ingredient'].queryset = self.fields['ingredient'].queryset.order_by('name')
+
     def clean(self):
         cleaned_data = super().clean()
 
+        # Check that quantity is gt 0
         if cleaned_data["quantity"] <= 0:
             self.add_error(None, f"Quantity must be greater then zero")
 

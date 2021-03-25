@@ -1,9 +1,12 @@
 App functionality:
-- Search and sort ingredients in Add Cocktail form
+- Search ingredients in Add Cocktail form
 - Make forms more visually appealing
 - Adjust UI for mobiles
 - Delete ingredient from a cocktail
 
-Other stuff
+Fix:
+Limit the number of ingredients in cocktails
+
+Other stuff:
 Backup DB
 Tests
