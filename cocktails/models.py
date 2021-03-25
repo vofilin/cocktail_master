@@ -50,6 +50,12 @@ class Recipe(models.Model):
     ingredient = models.ForeignKey(Ingredient, on_delete=models.PROTECT)
     quantity = models.IntegerField()
 
+    class Meta:
+        constraints = [
+            models.CheckConstraint(name="quantity_gt_0",
+                check=models.Q(quantity__gt=0)),
+        ]
+
     def __str__(self):
         """Return a string representation of the model."""
         return f"{self.quantity} ml of {self.ingredient}"

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.forms import modelformset_factory
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -29,7 +29,7 @@ def ingredients(request):
 
 def ingredient(request, ingredient_id):
     """Show a single ingredient."""
-    ingredient = Ingredient.objects.get(id=ingredient_id)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
     context = {'ingredient': ingredient, 'description':ingredient.description}
     return render(request, 'cocktails/ingredient.html', context)
 
@@ -53,7 +53,7 @@ def new_ingredient(request):
 
 def edit_ingredient(request, ingredient_id):
     """Edit ingredient."""
-    ingredient = Ingredient.objects.get(id=ingredient_id)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
 
     if request.method != 'POST':
         # No data submitted; create a blank form.
@@ -72,7 +72,7 @@ def edit_ingredient(request, ingredient_id):
 
 def delete_ingredient(request, ingredient_id):
     """Delete ingredient."""
-    ingredient = Ingredient.objects.get(id=ingredient_id)
+    ingredient = get_object_or_404(Ingredient, id=ingredient_id)
     cocktails = Cocktail.objects.filter(ingredients__id=ingredient_id)
 
     if request.method == 'POST':
@@ -103,7 +103,7 @@ def cocktails(request):
 
 def cocktail(request, cocktail_id):
     """Show a single cocktail."""
-    cocktail = Cocktail.objects.get(id=cocktail_id)
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
     ingredients = Recipe.objects.filter(cocktail=cocktail)
     context = {'cocktail': cocktail,
         'description':cocktail.description,
@@ -139,7 +139,7 @@ def new_cocktail(request):
 
 def edit_cocktail(request, cocktail_id):
     """Edit cocktail."""
-    cocktail = Cocktail.objects.get(id=cocktail_id)
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
     IngredientsFormset = modelformset_factory(Recipe, form = RecipeForm)
 
     if request.method != 'POST':
@@ -165,7 +165,7 @@ def edit_cocktail(request, cocktail_id):
 
 def delete_cocktail(request, cocktail_id):
     """Delete cocktail."""
-    cocktail = Cocktail.objects.get(id=cocktail_id)
+    cocktail = get_object_or_404(Cocktail, id=cocktail_id)
 
     if request.method == 'POST':
         cocktail.delete()

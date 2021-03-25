@@ -8,7 +8,6 @@ class IngredientForm(forms.ModelForm):
     class Meta:
         model = Ingredient
         fields = ['name','description']
-        # labels = {'name': ''}
 
 class RecipeForm(forms.ModelForm):
     """Form for adding ingredients"""
@@ -17,6 +16,14 @@ class RecipeForm(forms.ModelForm):
         model = Recipe
         fields = ['ingredient','quantity']
 
+    def clean(self):
+        cleaned_data = super().clean()
+
+        if cleaned_data["quantity"] <= 0:
+            self.add_error(None, f"Quantity must be greater then zero")
+
+        return cleaned_data
+
 
 class CocktailForm(forms.ModelForm):
     """Form for adding ingredients"""
@@ -24,4 +31,3 @@ class CocktailForm(forms.ModelForm):
     class Meta:
         model = Cocktail
         fields = ['name','description','steps']
-        # labels = {'name': ''}
