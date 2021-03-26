@@ -15,6 +15,7 @@ class RecipeForm(forms.ModelForm):
     class Meta:
         model = Recipe
         fields = ['ingredient','quantity']
+        labels = {'ingredient': '', 'quantity': ''}
 
     # Change default order for ingredient field to sorting by ingredient name
     def __init__(self, *args, **kwargs):

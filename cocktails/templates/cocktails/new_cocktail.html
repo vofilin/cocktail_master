@@ -1,7 +1,4 @@
-
 {% extends "cocktails/base.html" %}
-
-{% load crispy_forms_tags %}
 
 {% block page_header %}
   <h3>Add new cocktail:</h3>
@@ -11,23 +8,51 @@
 
   <form id="form-container" action="{% url 'cocktails:new_cocktail' %}" method='post'>
     {% csrf_token %}
-    {{ form.name|as_crispy_field }}
-    <div class="row">
-      <div class="col-4">
-        {{ form.description|as_crispy_field }}
-      </div>
-      <div class="col-4">
-        {{ form.steps|as_crispy_field }}
-      </div>
+
+    <div class="form-group mb-2">
+      <label for="id_{{form.name.name}}">Cocktail name</label>
+      <input type="text"
+        class="form-control"
+        name="{{form.name.name}}"
+        id="id_{{form.name.name}}"
+        placeholder="Name"
+        required>
+      <small id="passwordHelpInline" class="text-danger">
+        {{form.errors.name}}
+      </small>
     </div>
+
+    <div class="form-group mb-2">
+      <label for="id_{{form.description.name}}">Description</label>
+      <textarea
+        class="form-control"
+        rows="5"
+        name="{{form.description.name}}"
+        id="id_{{form.description.name}}"
+        placeholder="Description"
+        required></textarea>
+    </div>
+
+    <div class="form-group mb-2">
+      <label for="id_{{form.steps.name}}">Steps</label>
+      <textarea
+        class="form-control"
+        rows="5"
+        name="{{form.steps.name}}"
+        id="id_{{form.steps.name}}"
+        placeholder="Steps"
+        required></textarea>
+    </div>
+
     {{formset.management_form}}
+    Add ingredients and quantity
     {% for f_form in formset %}
-      <div class="ingredients-form">
+      <div class="ingredients-form mb-2">
         {{ f_form }}
       </div>
     {% endfor %}
-    <button id="add-form" class="btn btn-secondary">Add ingredient</button>
-    <button type="submit" class="btn btn-primary">Save cocktail</button>
+    <button id="add-form" class="btn btn-outline-secondary">Add ingredient</button>
+    <button type="submit" class="btn btn-outline-primary">Save cocktail</button>
   </form>
 
   <script>

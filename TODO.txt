@@ -6,7 +6,9 @@ App functionality:
 Fix:
 Limit the number of ingredients in cocktails
 Add a version number somewhere in base template
-Empty quantity field check in forms
+Empty quantity check in forms
+Fix case sensitive names
+Fix required fields
 
 Other stuff:
 Backup DB

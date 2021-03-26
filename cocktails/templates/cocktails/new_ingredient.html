@@ -1,7 +1,5 @@
 {% extends "cocktails/base.html" %}
 
-{% load crispy_forms_tags %}
-
 {% block page_header %}
   <h3>Add new ingredient:</h3>
 {% endblock page_header %}
@@ -10,7 +8,28 @@
 
   <form action="{% url 'cocktails:new_ingredient' %}" method='post'>
     {% csrf_token %}
-    {{ form|crispy }}
+    <div class="form-group mb-2">
+      <label for="id_{{form.name.name}}">Ingredient name</label>
+      <input type="text"
+        class="form-control"
+        name="{{form.name.name}}"
+        id="id_{{form.name.name}}"
+        placeholder="Name"
+        required>
+      <small id="passwordHelpInline" class="text-danger">
+        {{form.errors.name}}
+      </small>
+    </div>
+    <div class="form-group mb-2">
+      <label for="id_{{form.description.name}}">Description</label>
+      <textarea
+        class="form-control"
+        rows="5"
+        name="{{form.description.name}}"
+        id="id_{{form.description.name}}"
+        placeholder="Description"
+        required></textarea>
+    </div>
     <button type="submit" class="btn btn-primary">Save ingredient</button>
   </form>
 
