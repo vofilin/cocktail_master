@@ -1,11 +1,11 @@
 App functionality:
 - Search ingredients in Add Cocktail form
 - Make forms more visually appealing
-- Adjust UI for mobiles
 - Delete ingredient from a cocktail
 
 Fix:
 Limit the number of ingredients in cocktails
+Add a version number somewhere in base template
 
 Other stuff:
 Backup DB
