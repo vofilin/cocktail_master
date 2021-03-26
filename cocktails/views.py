@@ -89,7 +89,7 @@ def cocktails(request):
     if query:
         cocktails = Cocktail.objects.filter(
             Q(name__icontains=query) |
-            Q(ingredients__name__icontains=query)).order_by('name')
+            Q(ingredients__name__icontains=query)).order_by('name').distinct()
     else:
         cocktails = Cocktail.objects.order_by('name')
 
