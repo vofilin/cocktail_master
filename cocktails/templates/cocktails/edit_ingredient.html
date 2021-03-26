@@ -11,7 +11,7 @@
   <form action="{% url 'cocktails:edit_ingredient' ingredient.id%}" method='post'>
     {% csrf_token %}
     {{ form|crispy }}
-    <input type="submit" value="Save changes">
+    <button type="submit" class="btn btn-outline-primary">Save changes</button>
   </form>
 
 {% endblock content %}

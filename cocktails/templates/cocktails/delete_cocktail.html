@@ -11,7 +11,7 @@
   <h5>Are you want to delete the cocktail {{cocktail}}?</h5>
   <form action="{% url 'cocktails:delete_cocktail' cocktail.id%}" method='post'>
     {% csrf_token %}
-    <input type="submit" value="Yes, I'm sure">
+    <button type="submit" class="btn btn-outline-danger">Yes, I'm sure</button>
   </form>
 
 {% endblock content %}

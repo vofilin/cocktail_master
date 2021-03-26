@@ -6,17 +6,13 @@
 
 {% block content %}
 
-  <div class="card mb-0">
+  <div class="card mb-2">
     <div class="card-body">
       {{ description|linebreaks }}
     </div>
   </div>
-  <div class="row">
-    <div class="col-2">
-      <h4><a href="{% url 'cocktails:edit_ingredient' ingredient.id %}">Edit</a></h4>
-    </div>
-    <div class="col-2">
-      <h4><a href="{% url 'cocktails:delete_ingredient' ingredient.id %}">Delete</a></h4>
-    </div>
-  </div>
+  <a href="{% url 'cocktails:edit_ingredient' ingredient.id %}"
+  class="btn btn-outline-secondary" role="button">Edit</a>
+  <a href="{% url 'cocktails:delete_ingredient' ingredient.id %}"
+  class="btn btn-outline-danger" role="button">Delete</a>
 {% endblock content %}

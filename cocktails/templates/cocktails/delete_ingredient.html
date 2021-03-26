@@ -25,7 +25,7 @@
     <h5>Are you want to delete the ingredient {{ingredient}}?</h5>
     <form action="{% url 'cocktails:delete_ingredient' ingredient.id%}" method='post'>
       {% csrf_token %}
-      <input type="submit" value="Yes, I'm sure">
+      <button type="submit" class="btn btn-outline-danger">Yes, I'm sure</button>
     </form>
   {% endif %}
 

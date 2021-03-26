@@ -21,19 +21,13 @@
       </div>
     </div>
     {{formset.management_form}}
-    <div class="row">
-      <div class="col-6">
-        {% for f_form in formset %}
-          <div class="ingredients-form">
-            {{ f_form }}
-          </div>
-        {% endfor %}
+    {% for f_form in formset %}
+      <div class="ingredients-form">
+        {{ f_form }}
       </div>
-      <div class="col-1">
-        <button id="add-form" type="button">+</button>
-      </div>
-    </div>
-    <input type="submit" value="Save changes">
+    {% endfor %}
+    <button id="add-form" class="btn btn-outline-secondary">Add ingredient</button>
+    <button type="submit" class="btn btn-outline-primary">Save changes</button>
   </form>
 
   <script>

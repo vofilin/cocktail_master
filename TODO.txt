@@ -6,6 +6,8 @@ App functionality:
 Fix:
 Limit the number of ingredients in cocktails
 Add a version number somewhere in base template
+Empty quantity field check in forms
+Add ingredient in Edit cocktail not working
 
 Other stuff:
 Backup DB
