@@ -3,6 +3,7 @@ from django.db.models.functions import Length
 
 models.CharField.register_lookup(Length)
 
+
 class Ingredient(models.Model):
     """Ingredient for cocktails."""
     name = models.CharField(max_length=30)
@@ -11,8 +12,9 @@ class Ingredient(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(name="ingredient_name_not_empty",
-                check=models.Q(name__length__gt=0)),
-            models.UniqueConstraint(name="ingredient_name_unique", fields=["name"]),
+                                   check=models.Q(name__length__gt=0)),
+            models.UniqueConstraint(name="ingredient_name_unique",
+                                    fields=["name"]),
         ]
 
     def __str__(self):
@@ -35,8 +37,9 @@ class Cocktail(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(name="cocktail_name_not_empty",
-                check=models.Q(name__length__gt=0)),
-            models.UniqueConstraint(name="cocktail_name_unique", fields=["name"]),
+                                   check=models.Q(name__length__gt=0)),
+            models.UniqueConstraint(name="cocktail_name_unique",
+                                    fields=["name"]),
         ]
 
     def __str__(self):
@@ -53,7 +56,7 @@ class Recipe(models.Model):
     class Meta:
         constraints = [
             models.CheckConstraint(name="quantity_gt_0",
-                check=models.Q(quantity__gt=0)),
+                                   check=models.Q(quantity__gt=0)),
         ]
 
     def __str__(self):

@@ -1,20 +1,22 @@
-#from django.forms import ModelForm, HiddenInput, IntegerField, CharField
+# from django.forms import ModelForm, HiddenInput, IntegerField, CharField
 from django import forms
 
 from .models import Ingredient, Cocktail, Recipe
+
 
 class IngredientForm(forms.ModelForm):
     """Form for adding ingredients"""
     class Meta:
         model = Ingredient
-        fields = ['name','description']
+        fields = ['name', 'description']
+
 
 class RecipeForm(forms.ModelForm):
     """Form for adding ingredients"""
 
     class Meta:
         model = Recipe
-        fields = ['ingredient','quantity']
+        fields = ['ingredient', 'quantity']
         labels = {'ingredient': '', 'quantity': ''}
 
     # Change default order for ingredient field to sorting by ingredient name
@@ -37,4 +39,4 @@ class CocktailForm(forms.ModelForm):
 
     class Meta:
         model = Cocktail
-        fields = ['name','description','steps']
+        fields = ['name', 'description', 'steps']
