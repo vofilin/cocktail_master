@@ -26,7 +26,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            The ${{ github.event_name }} event triggered
+            The ${{ github.action }} in ${{ repo.namespace }} triggered
 
   deploy-job: # deploy job
     runs-on: self-hosted
