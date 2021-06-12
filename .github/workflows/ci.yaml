@@ -23,7 +23,7 @@ jobs:
       - name: Build & Publish Image
         uses: docker/build-push-action@v1
         with:
-          tags: vfilin/cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}
+          tags: "vfilin/cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}"
           push: true
       - name: Send notification
         uses: appleboy/telegram-action@master
@@ -42,7 +42,7 @@ jobs:
       - name: Docker compose
         run: docker-compose up -d
         env:
-          DOCKER_IMAGE: vfilin/cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}
+          DOCKER_IMAGE: "vfilin/cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}"
           DB_ENGINE: django.db.backends.postgresql_psycopg2
           DB_HOST: postgres
           DB_PORT: 5432
