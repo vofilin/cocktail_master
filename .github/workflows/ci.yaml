@@ -38,6 +38,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
             Package-job for COCKTAIL_MASTER v${{ env.COCKTAIL_MASTER_VERSION }}
             branch *${{ env.BRANCH }}* completed with a *${{ JOB.STATUS }}*
