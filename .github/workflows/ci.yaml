@@ -6,10 +6,11 @@ on:
     branches:
       - master
 
+env:
+  DOCKER_REPO: vfilin/cocktail_master
+
 # job definitions
 jobs:
-  env:
-      DOCKER_REPO: vfilin/cocktail_master
   package-job: # package job for building and publishing docker image
     runs-on: self-hosted
     steps:
