@@ -7,7 +7,7 @@ on:
       - master
 
 env:
-  DOCKER_REPO: vfilin/cocktail_master
+  DOCKER_REPO: "vfilin/cocktail_master"
 
 # job definitions
 jobs:
