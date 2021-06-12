@@ -17,8 +17,10 @@ jobs:
     steps:
       - name: Checkout Code # checking out code.
         uses: actions/checkout@v2
-      - name: Define version
-        run: cat version.txt >> $GITHUB_ENV
+      - name: Define varibles
+        run: |
+          cat version.txt >> $GITHUB_ENV
+          echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -45,8 +47,10 @@ jobs:
     runs-on: self-hosted
     needs: [package-job] # will require package-job to be successful for triggering
     steps:
-      - name: Define version
-        run: cat version.txt >> $GITHUB_ENV
+      - name: Define varibles
+        run: |
+          cat version.txt >> $GITHUB_ENV
+          echo "BRANCH=${GITHUB_REF#refs/heads/}" >> $GITHUB_ENV
       - name: Docker compose
         run: docker-compose up -d
         env:
