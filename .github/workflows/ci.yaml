@@ -37,8 +37,8 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Package-job for cocktail_master:${{ env.COCKTAIL_MASTER_VERSION }}
-            in ${{ GITHUB_REF#refs/heads/ }} branch completed with a ${{ JOB.STATUS }}
+            Package-job for cocktail_master v${{ env.COCKTAIL_MASTER_VERSION }}
+            in ${GITHUB_REF##*/} branch completed with a ${{ JOB.STATUS }}
 
   deploy-job: # deploy job
     runs-on: self-hosted
