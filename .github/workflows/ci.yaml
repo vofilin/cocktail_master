@@ -40,7 +40,7 @@ jobs:
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           message: |
-            *PACKAGE-JOB* for *Cocktail Master v${{ env.COCKTAIL_MASTER_VERSION }}*
+            __PACKAGE-JOB__ for *Cocktail Master v${{ env.COCKTAIL_MASTER_VERSION }}*
             in branch *${{ env.BRANCH }}* completed with a *${{ JOB.STATUS }}*
 
   deploy-job: # deploy job
@@ -67,6 +67,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            *DEPLOY-JOB* for *Cocktail Master v${{ env.COCKTAIL_MASTER_VERSION }}*
+            __DEPLOY-JOB__ for *Cocktail Master v${{ env.COCKTAIL_MASTER_VERSION }}*
             in branch *${{ env.BRANCH }}* completed with a *${{ JOB.STATUS }}*
