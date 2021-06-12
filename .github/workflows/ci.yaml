@@ -36,8 +36,10 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            Package-job in ${{ github.repository }} completed
+            PACKAGE-JOB for *Cocktail Master v${{ env.COCKTAIL_MASTER_VERSION }}*
+            in branch *${{ env.BRANCH }}* completed with a *${{ JOB.STATUS }}*
 
   deploy-job: # deploy job
     runs-on: self-hosted
@@ -63,5 +65,7 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
           message: |
-            Deploy-job in ${{ github.repository }} completed
+            DEPLOY-JOB for *Cocktail Master v${{ env.COCKTAIL_MASTER_VERSION }}*
+            in branch *${{ env.BRANCH }}* completed with a *${{ JOB.STATUS }}*
