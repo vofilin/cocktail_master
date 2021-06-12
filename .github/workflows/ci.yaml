@@ -37,7 +37,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            Package-job in ${{ github.repository }} completed
+            Package-job in ${{ github.repository }} completed with a ${{ job.status }}
 
   deploy-job: # deploy job
     runs-on: self-hosted
