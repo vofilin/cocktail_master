@@ -6,10 +6,11 @@ on:
     branches:
       - master
 
+env:
+  DOCKER_REPO: vfilin/cocktail_master
+
 # job definitions
 jobs:
-  env:
-    DOCKER_REPO: vfilin/cocktail_master
   package-job: # package job for building and publishing docker image
     runs-on: self-hosted
     steps:
@@ -39,6 +40,8 @@ jobs:
     runs-on: self-hosted
     needs: [package-job] # will require package-job to be successful for triggering
     steps:
+      - name: Define version
+        run: cat version.txt >> $GITHUB_ENV
       - name: Docker compose
         run: docker-compose up -d
         env:
