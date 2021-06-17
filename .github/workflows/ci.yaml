@@ -31,7 +31,9 @@ jobs:
         with:
           context: .
           file: ./Dockerfile
-          tags: ${{ env.DOCKER_REPO }}:${{ env.COCKTAIL_MASTER_VERSION }}
+          tags: |
+            ${{ env.DOCKER_REPO }}:${{ env.COCKTAIL_MASTER_VERSION }},
+            ${{ env.DOCKER_REPO }}:latest,
           push: true
       - name: Send notification
         uses: appleboy/telegram-action@master
