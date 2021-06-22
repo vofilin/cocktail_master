@@ -37,6 +37,7 @@ jobs:
           push: true
       - name: Send notification
         uses: appleboy/telegram-action@master
+        if: ${{ always() }}
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
@@ -68,6 +69,7 @@ jobs:
           PGADMIN_DEFAULT_PASSWORD: ${{ secrets.PGADMIN_DEFAULT_PASSWORD }}
       - name: Send notification
         uses: appleboy/telegram-action@master
+        if: ${{ always() }}
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
