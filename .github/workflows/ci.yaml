@@ -45,6 +45,7 @@ jobs:
 
   deploy-job: # deploy job
     runs-on: self-hosted
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs: [package-job] # will require package-job to be successful for triggering
     steps:
       - name: Define varibles
