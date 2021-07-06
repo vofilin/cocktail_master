@@ -1,8 +1,7 @@
 FROM python:3.8.4-slim
 
 RUN useradd -m cocktail
-RUN mkdir /cocktail_master
-RUN chown cocktail:cocktail /cocktail_master
+RUN mkdir /cocktail_master && chown cocktail:cocktail /cocktail_master
 COPY --chown=cocktail:cocktail . /cocktail_master/
 RUN pip install -r /cocktail_master/requirements.txt
 USER cocktail
