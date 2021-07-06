@@ -33,7 +33,7 @@ jobs:
           file: ./Dockerfile
           tags: |
             ${{ env.DOCKER_REPO }}:${{ env.COCKTAIL_MASTER_VERSION }},
-            ${{ env.DOCKER_REPO }}:latest,
+            ${{ env.DOCKER_REPO }}:latest
           push: true
       - name: Send notification
         uses: appleboy/telegram-action@master
@@ -48,6 +48,7 @@ jobs:
 
   deploy-job: # deploy job
     runs-on: self-hosted
+    if: ${{ github.ref == 'refs/heads/master' }}
     needs: [package-job] # will require package-job to be successful for triggering
     steps:
       - name: Define varibles
