@@ -11,6 +11,7 @@ media
 # Environments
 cm_env
 .env/
+.env.local
 .venv/
 env/
 venv/
