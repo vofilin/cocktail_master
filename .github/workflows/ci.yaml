@@ -3,7 +3,7 @@ name: Django CI/CD Workflow
 # triggers for the workflow
 on:
   - push:
-    branches:
+      branches:
       - master
       - cicd_workflow
   - workflow_dispatch
