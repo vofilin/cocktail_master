@@ -2,11 +2,10 @@ name: Django CI/CD Workflow
 
 # triggers for the workflow
 on:
-  - push:
-      branches:
+  push:
+    branches:
       - master
       - cicd_workflow
-  - workflow_dispatch
 
 env:
   DOCKER_REPO: "vfilin/cocktail_master"
